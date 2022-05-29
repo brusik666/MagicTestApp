@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  MagicTestApp
-//
-//  Created by Brusik on 29.05.2022.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

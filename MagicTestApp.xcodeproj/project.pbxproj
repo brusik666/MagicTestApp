@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CCF26EABA688DB1625EF7019 /* Pods_MagicTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B7BB2B5713E7BBA57FA81E /* Pods_MagicTestApp.framework */; };
+		EE54EBED2843AED2002CF336 /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54EBEC2843AED2002CF336 /* ChannelCollectionViewCell.swift */; };
+		EE7254022843C5BF0011F427 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7254012843C5BF0011F427 /* Sections.swift */; };
+		EEB28844284429C600B9F210 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB28843284429C600B9F210 /* VideoCollectionViewCell.swift */; };
+		EECEF1312842DDAB00D7A43E /* ApiRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF1302842DDAB00D7A43E /* ApiRequestController.swift */; };
+		EECEF1332842DDDA00D7A43E /* YoutubeChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF1322842DDDA00D7A43E /* YoutubeChannel.swift */; };
+		EECEF1372842DE3E00D7A43E /* ApiRequestControllerAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF1362842DE3E00D7A43E /* ApiRequestControllerAvailable.swift */; };
+		EECEF1392842DE5600D7A43E /* DataBaseAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF1382842DE5600D7A43E /* DataBaseAvailable.swift */; };
+		EECEF13B2842DE6700D7A43E /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF13A2842DE6700D7A43E /* DataBase.swift */; };
+		EECEF13D2842DE7D00D7A43E /* YoutubeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF13C2842DE7D00D7A43E /* YoutubeApiService.swift */; };
+		EECEF1432842DF7B00D7A43E /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF1422842DF7B00D7A43E /* Video.swift */; };
+		EECEF1452842DF9100D7A43E /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEF1442842DF9100D7A43E /* Playlist.swift */; };
 		EEEED6F12842DCB2005BD347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEED6F02842DCB2005BD347 /* AppDelegate.swift */; };
 		EEEED6F32842DCB2005BD347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEED6F22842DCB2005BD347 /* SceneDelegate.swift */; };
 		EEEED6F52842DCB2005BD347 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEED6F42842DCB2005BD347 /* ViewController.swift */; };
@@ -16,6 +28,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09D2C20E8FA34DFD595FCAB9 /* Pods-MagicTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicTestApp.release.xcconfig"; path = "Target Support Files/Pods-MagicTestApp/Pods-MagicTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		6810CD6083B3F0FEDAF4DA00 /* Pods-MagicTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicTestApp.debug.xcconfig"; path = "Target Support Files/Pods-MagicTestApp/Pods-MagicTestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		84B7BB2B5713E7BBA57FA81E /* Pods_MagicTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE54EBEC2843AED2002CF336 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE7254012843C5BF0011F427 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		EEB28843284429C600B9F210 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		EECEF1302842DDAB00D7A43E /* ApiRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestController.swift; sourceTree = "<group>"; };
+		EECEF1322842DDDA00D7A43E /* YoutubeChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeChannel.swift; sourceTree = "<group>"; };
+		EECEF1362842DE3E00D7A43E /* ApiRequestControllerAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestControllerAvailable.swift; sourceTree = "<group>"; };
+		EECEF1382842DE5600D7A43E /* DataBaseAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseAvailable.swift; sourceTree = "<group>"; };
+		EECEF13A2842DE6700D7A43E /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		EECEF13C2842DE7D00D7A43E /* YoutubeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeApiService.swift; sourceTree = "<group>"; };
+		EECEF1422842DF7B00D7A43E /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		EECEF1442842DF9100D7A43E /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		EEEED6ED2842DCB2005BD347 /* MagicTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEEED6F02842DCB2005BD347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEEED6F22842DCB2005BD347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +57,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF26EABA688DB1625EF7019 /* Pods_MagicTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10BD8136F456E7FD82F0CF79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84B7BB2B5713E7BBA57FA81E /* Pods_MagicTestApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8407C495BD86BFC5D853BDDF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6810CD6083B3F0FEDAF4DA00 /* Pods-MagicTestApp.debug.xcconfig */,
+				09D2C20E8FA34DFD595FCAB9 /* Pods-MagicTestApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EEEED6E42842DCB2005BD347 = {
 			isa = PBXGroup;
 			children = (
 				EEEED6EF2842DCB2005BD347 /* MagicTestApp */,
 				EEEED6EE2842DCB2005BD347 /* Products */,
+				8407C495BD86BFC5D853BDDF /* Pods */,
+				10BD8136F456E7FD82F0CF79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,7 +105,18 @@
 				EEEED6F02842DCB2005BD347 /* AppDelegate.swift */,
 				EEEED6F22842DCB2005BD347 /* SceneDelegate.swift */,
 				EEEED6F42842DCB2005BD347 /* ViewController.swift */,
+				EE7254012843C5BF0011F427 /* Sections.swift */,
+				EECEF1302842DDAB00D7A43E /* ApiRequestController.swift */,
+				EECEF1362842DE3E00D7A43E /* ApiRequestControllerAvailable.swift */,
+				EECEF1382842DE5600D7A43E /* DataBaseAvailable.swift */,
+				EECEF13A2842DE6700D7A43E /* DataBase.swift */,
+				EE54EBEC2843AED2002CF336 /* ChannelCollectionViewCell.swift */,
+				EECEF1422842DF7B00D7A43E /* Video.swift */,
+				EECEF1442842DF9100D7A43E /* Playlist.swift */,
+				EECEF13C2842DE7D00D7A43E /* YoutubeApiService.swift */,
+				EECEF1322842DDDA00D7A43E /* YoutubeChannel.swift */,
 				EEEED6F62842DCB2005BD347 /* Main.storyboard */,
+				EEB28843284429C600B9F210 /* VideoCollectionViewCell.swift */,
 				EEEED6F92842DCB3005BD347 /* Assets.xcassets */,
 				EEEED6FB2842DCB3005BD347 /* LaunchScreen.storyboard */,
 				EEEED6FE2842DCB3005BD347 /* Info.plist */,
@@ -74,9 +131,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EEEED7012842DCB3005BD347 /* Build configuration list for PBXNativeTarget "MagicTestApp" */;
 			buildPhases = (
+				EC924D73746AAB6CC7A66041 /* [CP] Check Pods Manifest.lock */,
 				EEEED6E92842DCB2005BD347 /* Sources */,
 				EEEED6EA2842DCB2005BD347 /* Frameworks */,
 				EEEED6EB2842DCB2005BD347 /* Resources */,
+				A3CEC913BBADDE92DE68E422 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,14 +192,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A3CEC913BBADDE92DE68E422 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MagicTestApp/Pods-MagicTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MagicTestApp/Pods-MagicTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MagicTestApp/Pods-MagicTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC924D73746AAB6CC7A66041 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MagicTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EEEED6E92842DCB2005BD347 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEB28844284429C600B9F210 /* VideoCollectionViewCell.swift in Sources */,
+				EECEF1392842DE5600D7A43E /* DataBaseAvailable.swift in Sources */,
+				EE7254022843C5BF0011F427 /* Sections.swift in Sources */,
+				EECEF1372842DE3E00D7A43E /* ApiRequestControllerAvailable.swift in Sources */,
+				EECEF1312842DDAB00D7A43E /* ApiRequestController.swift in Sources */,
 				EEEED6F52842DCB2005BD347 /* ViewController.swift in Sources */,
+				EECEF13D2842DE7D00D7A43E /* YoutubeApiService.swift in Sources */,
 				EEEED6F12842DCB2005BD347 /* AppDelegate.swift in Sources */,
+				EE54EBED2843AED2002CF336 /* ChannelCollectionViewCell.swift in Sources */,
 				EEEED6F32842DCB2005BD347 /* SceneDelegate.swift in Sources */,
+				EECEF13B2842DE6700D7A43E /* DataBase.swift in Sources */,
+				EECEF1452842DF9100D7A43E /* Playlist.swift in Sources */,
+				EECEF1332842DDDA00D7A43E /* YoutubeChannel.swift in Sources */,
+				EECEF1432842DF7B00D7A43E /* Video.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +394,7 @@
 		};
 		EEEED7022842DCB3005BD347 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6810CD6083B3F0FEDAF4DA00 /* Pods-MagicTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +423,7 @@
 		};
 		EEEED7032842DCB3005BD347 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09D2C20E8FA34DFD595FCAB9 /* Pods-MagicTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
