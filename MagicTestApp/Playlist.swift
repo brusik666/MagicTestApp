@@ -2,8 +2,8 @@ import Foundation
 
 struct Playlist {
     let title: String?
-    let videoIDs: [String]?
-    let videos: [Video]?
+    var videoIDs: [String]?
+    var videos: [Video]?
     
     init?(with item: Item) {
         guard let title = item.snippet?.title else { return nil }

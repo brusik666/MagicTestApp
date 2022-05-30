@@ -17,6 +17,8 @@ class DataBase: APIRequestControllerAvailable {
     var videos = [Video?]()
     var videoIDs = [String]()
     var channelsSubject = BehaviorRelay<[YoutubeChannel]>(value: [])
+    var playlistsSubject = BehaviorRelay<[Playlist]>(value: [])
+    
     
     
 }
@@ -58,6 +60,11 @@ extension DataBase {
         
     }
     
+    
+    
+    
+    
+    
     private func fetchPlaylistsData() {
         apiRequestController?.fetchMergedData(with: youtubePlaylistsIDs).subscribe(onNext: { youtubePlatlistsService in
             for item in youtubePlatlistsService.items {
@@ -81,7 +88,44 @@ extension DataBase {
     
     func loadAllData() {
         loadChannelsData()
-        fetchPlaylistsData()
+        //fetchPlaylistsData()
+        guard let urls = apiRequestController?.createURLsForPlaylistItems(with: youtubePlaylistsIDs) else { return }
+        var videoIDs: [[String]] = []
+        urls.forEach { url in
+            apiRequestController?.fetchData(with: url!).subscribe(onNext: { youtubeServiceApi in
+                let videos1 = youtubeServiceApi.items.map {$0.snippet?.resourceId?.videoId}
+                var unwrappedVideos1 = [String]()
+                videos1.forEach { id in
+                    guard let id = id else { return }
+                    print(id)
+                    unwrappedVideos1.append(id)
+                }
+                videoIDs.append(unwrappedVideos1)
+                print(unwrappedVideos1.count)
+                
+            })
+        }
+        guard let playListUrls = apiRequestController?.createURLsForPlaylist(with: youtubePlaylistsIDs) else { return }
+        print("zagruzka started")
+        var playlists = [Playlist]()
+        playListUrls.forEach { url in
+            apiRequestController?.fetchData(with: url!).subscribe(onNext: { youtubeApiService in
+                guard let playlist = Playlist(with: youtubeApiService.items.first!) else { return }
+                playlists.append(playlist)
+            }, onCompleted: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    print(videoIDs.count)
+                }
+               // playlists[0].videoIDs = videoIDs[0]
+               // playlists[1].videoIDs = videoIDs[1]
+                for playlist in playlists {
+               //     print(playlist.title)
+                 //   print(playlist.videoIDs)
+                }
+            })
+        }
+        
+        
     }
 }
 

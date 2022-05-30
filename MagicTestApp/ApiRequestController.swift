@@ -74,7 +74,7 @@ extension ApiRequestController {
     }
     
     
-    private func createURLsForPlaylist(with playlistIDs: [String]) -> [URL?] {
+    func createURLsForPlaylist(with playlistIDs: [String]) -> [URL?] {
         
         //At first we need url for Playlist and then url for PlaylistItems
         let playlistQueryItemsDict: [String: Any] = [
@@ -90,7 +90,7 @@ extension ApiRequestController {
 
     }
     
-    private func createURLsForPlaylistItems(with playlistIDs: [String]) -> [URL?] {
+    func createURLsForPlaylistItems(with playlistIDs: [String]) -> [URL?] {
         let urls: [URL?] = playlistIDs.map { id in
             let playlistItemsQueryItemsDict: [String: Any] = [
                 "part": "snippet",
@@ -105,7 +105,7 @@ extension ApiRequestController {
         return urls
     }
     
-    func createPlaylistsURls(with id:  [String]) -> [URL?] {
+    private func createPlaylistsURls(with id:  [String]) -> [URL?] {
         let urls = createURLsForPlaylist(with: id) + createURLsForPlaylistItems(with: id)
         return urls
     }
