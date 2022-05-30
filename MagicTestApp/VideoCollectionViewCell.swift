@@ -13,8 +13,9 @@ class VideoCollectionViewCell: UICollectionViewCell, APIRequestControllerAvailab
     @IBOutlet weak var videoBannerImageView: UIImageView!
     @IBOutlet weak var viewCountLabel: UILabel!
     
-    func configure(title: String, urlString: String, viewCount: Int) {
+    func configure(title: String, urlString: String, viewCount: String) {
         videoTitleLabel.text = title
+        viewCountLabel.text = viewCount
         guard let url = URL(string: urlString) else { return }
         apiRequestController?.fetchImage(url: url, completion: { image in
             guard let image = image else {
@@ -24,6 +25,12 @@ class VideoCollectionViewCell: UICollectionViewCell, APIRequestControllerAvailab
                 self.videoBannerImageView.image = image
             }
         })
+        
+    }
+    
+    override func layoutSubviews() {
+        videoBannerImageView.layer.cornerRadius = 15
+        videoBannerImageView.layer.masksToBounds = true
         
     }
 }

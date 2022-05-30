@@ -28,10 +28,14 @@ struct Snippet: Codable {
 struct Thumbnails: Codable {
     let maxres: Default?
     let defaultt: Default?
+    let standart: Default?
+    let medium: Default?
     
     private enum CodingKeys: String, CodingKey {
         case defaultt = "default"
         case maxres
+        case standart
+        case medium
     }
 }
 

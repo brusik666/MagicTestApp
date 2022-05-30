@@ -55,9 +55,9 @@ extension ApiRequestController {
         if firstID.contains("UC")  {
             return createURLforChannels(with: itemID)
         } else if firstID.contains("PL") || firstID.contains("UU") {
-            return createPlaylistsURls(with: itemID)
+            return []
         } else {
-            return createURLForVideo(with: itemID)
+            return []
         }
         
     }
@@ -74,19 +74,19 @@ extension ApiRequestController {
     }
     
     
-    func createURLsForPlaylist(with playlistIDs: [String]) -> [URL?] {
+    func createURLForPlaylist(with playlistID: String) -> URL? {
         
         //At first we need url for Playlist and then url for PlaylistItems
         let playlistQueryItemsDict: [String: Any] = [
             "part": "snippet",
-            "id": playlistIDs,
+            "id": playlistID,
             "key": myYoutubeApiKey,
             "maxResults": "10"
         ]
         var playlistUrlComponents = URLComponents(url: baseYoutubeApiURL.appendingPathComponent("playlists"), resolvingAgainstBaseURL: false)
         playlistUrlComponents?.queryItems = mapQueryItems(with: playlistQueryItemsDict)
         
-        return [playlistUrlComponents?.url]
+        return playlistUrlComponents?.url
 
     }
     
@@ -105,26 +105,6 @@ extension ApiRequestController {
         return urls
     }
     
-    private func createPlaylistsURls(with id:  [String]) -> [URL?] {
-        let urls = createURLsForPlaylist(with: id) + createURLsForPlaylistItems(with: id)
-        return urls
-    }
-    
-    private func createURLForVideo(with videoIDs: [String]) -> [URL?] {
-        let queryItemsDict: [String: Any] = [
-            "part": ["snippet", "statistics"],
-            "id": videoIDs,
-            "key": myYoutubeApiKey,
-            "maxResults": "20"
-        ]
-        
-        var urlComponents = URLComponents(url: baseYoutubeApiURL.appendingPathComponent("videos"), resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = mapQueryItems(with: queryItemsDict)
-        return [urlComponents?.url]
-        
-        
-    }
-    
     private func mapQueryItems(with dict: [String: Any]) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
         for (key, value) in dict {
@@ -135,6 +115,21 @@ extension ApiRequestController {
             }
         }
         return queryItems
+    }
+    
+    func createURLForVideo(with videoID: String) -> URL? {
+        let queryItemsDict: [String: Any] = [
+            "part": ["snippet", "statistics"],
+            "id": videoID,
+            "key": myYoutubeApiKey,
+            "maxResults": "10"
+        ]
+        
+        var urlComponents = URLComponents(url: baseYoutubeApiURL.appendingPathComponent("videos"), resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = mapQueryItems(with: queryItemsDict)
+        return urlComponents?.url
+        
+        
     }
     
     

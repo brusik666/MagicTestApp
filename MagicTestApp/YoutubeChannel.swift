@@ -22,19 +22,5 @@ struct YoutubeChannel {
     }
 }
 
-struct SectionOfChannels: SectionModelType {
-    
-    
-    
-    typealias Item = YoutubeChannel
-    
-    var header: String
-    var items: [Item]
-    
-    init(original: SectionOfChannels, items: [YoutubeChannel]) {
-        self = original
-        self.items = items
-    }
-}
 
 
