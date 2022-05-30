@@ -12,6 +12,7 @@ class VideoCollectionViewCell: UICollectionViewCell, APIRequestControllerAvailab
     @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var videoBannerImageView: UIImageView!
     @IBOutlet weak var viewCountLabel: UILabel!
+    var video: Video!
     
     func configure(title: String, urlString: String, viewCount: String) {
         videoTitleLabel.text = title

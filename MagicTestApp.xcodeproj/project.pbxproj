@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CCF26EABA688DB1625EF7019 /* Pods_MagicTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B7BB2B5713E7BBA57FA81E /* Pods_MagicTestApp.framework */; };
+		EE12AF0928455ABD00C04B35 /* ExtensionUIColllectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE12AF0828455ABD00C04B35 /* ExtensionUIColllectionViewLayout.swift */; };
 		EE370B7E2844B979009F2E59 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE370B7D2844B979009F2E59 /* Sections.swift */; };
 		EE54EBED2843AED2002CF336 /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54EBEC2843AED2002CF336 /* ChannelCollectionViewCell.swift */; };
 		EEB28844284429C600B9F210 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB28843284429C600B9F210 /* VideoCollectionViewCell.swift */; };
@@ -31,6 +32,7 @@
 		09D2C20E8FA34DFD595FCAB9 /* Pods-MagicTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicTestApp.release.xcconfig"; path = "Target Support Files/Pods-MagicTestApp/Pods-MagicTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		6810CD6083B3F0FEDAF4DA00 /* Pods-MagicTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicTestApp.debug.xcconfig"; path = "Target Support Files/Pods-MagicTestApp/Pods-MagicTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		84B7BB2B5713E7BBA57FA81E /* Pods_MagicTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE12AF0828455ABD00C04B35 /* ExtensionUIColllectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColllectionViewLayout.swift; sourceTree = "<group>"; };
 		EE370B7D2844B979009F2E59 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		EE54EBEC2843AED2002CF336 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		EEB28843284429C600B9F210 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				EE370B7D2844B979009F2E59 /* Sections.swift */,
 				EEEED6F22842DCB2005BD347 /* SceneDelegate.swift */,
 				EEEED6F42842DCB2005BD347 /* ViewController.swift */,
+				EE12AF0828455ABD00C04B35 /* ExtensionUIColllectionViewLayout.swift */,
 				EECEF1302842DDAB00D7A43E /* ApiRequestController.swift */,
 				EECEF1362842DE3E00D7A43E /* ApiRequestControllerAvailable.swift */,
 				EECEF1382842DE5600D7A43E /* DataBaseAvailable.swift */,
@@ -242,6 +245,7 @@
 				EEB28844284429C600B9F210 /* VideoCollectionViewCell.swift in Sources */,
 				EE370B7E2844B979009F2E59 /* Sections.swift in Sources */,
 				EECEF1392842DE5600D7A43E /* DataBaseAvailable.swift in Sources */,
+				EE12AF0928455ABD00C04B35 /* ExtensionUIColllectionViewLayout.swift in Sources */,
 				EECEF1372842DE3E00D7A43E /* ApiRequestControllerAvailable.swift in Sources */,
 				EECEF1312842DDAB00D7A43E /* ApiRequestController.swift in Sources */,
 				EEEED6F52842DCB2005BD347 /* ViewController.swift in Sources */,

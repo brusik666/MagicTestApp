@@ -7,6 +7,8 @@ class ChannelCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var channelCoverImageView: UIImageView!
     
+    var channel: YoutubeChannel!
+
     override func layoutSubviews() {
         channelCoverImageView.layer.cornerRadius = 15
         channelCoverImageView.layer.masksToBounds = true

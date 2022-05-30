@@ -56,7 +56,6 @@ extension DataBase {
                         guard let url1 = self.apiRequestController?.createURLForVideo(with: videoID!) else { return }
                         self.apiRequestController?.fetchData(with: url1).subscribe(onNext: { youtubeApiService in
                             for item in youtubeApiService.items {
-                                print(item.snippet?.thumbnails?.medium?.url)
                                 guard let video = Video(with: item) else { return }
                                 
                                 if video.title.hasPrefix("Gor") {
