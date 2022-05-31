@@ -5,7 +5,6 @@ import RxCocoa
 
 class ApiRequestController {
 
-    private let videoBaseUrl = URL(string: "https://youtube.googleapis.com/youtube/v3/videos?part=statistics&part=snippet&id=HW-lXjOyUWo&key=AIzaSyDvBE_sgfl8bHMZ9iNY4jQIhvo_BQO5uG0")
     private let myYoutubeApiKey = "AIzaSyDvBE_sgfl8bHMZ9iNY4jQIhvo_BQO5uG0"
     private let jsonDecoder = JSONDecoder()
     private let baseYoutubeApiURL = URL(string: "https://youtube.googleapis.com/youtube/v3")!

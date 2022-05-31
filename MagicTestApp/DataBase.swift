@@ -9,13 +9,14 @@ class DataBase: APIRequestControllerAvailable {
 // MARK: - URLs and data for search in youtube API
     private let disposeBag = DisposeBag()
     private let youtubeChannelsIDs = ["UCEuOwB9vSL1oPKGNdONB4ig", "UCq19-LqvG35A-30oyAiPiqA", "UCNgjBASMIxygr65gJs9IyUA", "UCY2qt3dw2TQJxvBrDiYGHdQ"]
-    private let youtubePlaylistsIDs = ["PLH0h8qdlkagpu1Lw6PnVK5TEMzHnRsgCN", "PL6305F709EB481224"]
+    private let youtubePlaylistsIDs = ["PL1343579D67ED4740", "PL6305F709EB481224"]
     
 // MARK: - Variables
 
     var channelsSubject = BehaviorRelay<[YoutubeChannel]>(value: [])
     var playlists1Subject = BehaviorRelay<[Video]>(value: [])
     var playlist2Subject = BehaviorRelay<[Video]>(value: [])
+    
     
     
     
