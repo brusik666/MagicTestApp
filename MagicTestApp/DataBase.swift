@@ -17,15 +17,12 @@ class DataBase: APIRequestControllerAvailable {
     var playlists1Subject = BehaviorRelay<[Video]>(value: [])
     var playlist2Subject = BehaviorRelay<[Video]>(value: [])
     
-    
-    
-    
 }
 
 // MARK: - Functions
 extension DataBase {
     
-    func loadChannelsData() {
+    private func loadChannelsData() {
         apiRequestController?.fetchMergedData(with: youtubeChannelsIDs)
             .subscribe(onNext: { [weak self] youtubeChannelsService in
                 youtubeChannelsService.items.forEach({ item in
@@ -33,21 +30,13 @@ extension DataBase {
                         let self = self else { return }
                     let newValue = self.channelsSubject.value + [channel]
                     self.channelsSubject.accept(newValue)
-                    
                 })
-            }, onCompleted: {
-
             })
             .disposed(by: disposeBag)
     }
     
     
-    
-    
-    
-    func loadAllData() {
-        loadChannelsData()
-        //fetchPlaylistsData()
+    private func loadPlaylistsData() {
         guard let urls = apiRequestController?.createURLsForPlaylistItems(with: youtubePlaylistsIDs) else { return }
         urls.forEach { url in
             apiRequestController?.fetchData(with: url!).subscribe(onNext: { youtubeServiceApi in
@@ -68,12 +57,18 @@ extension DataBase {
                                     self.playlist2Subject.accept(newValue)
                                 }
                             }
-                        })
+                        }).disposed(by: self.disposeBag)
                     }
                 }
             })
             .disposed(by: disposeBag)
         }
+    }
+    
+    
+    func loadAllData() {
+        loadChannelsData()
+        loadPlaylistsData()
     }
 }
 

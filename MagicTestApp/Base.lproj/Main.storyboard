@@ -226,8 +226,11 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zOk-KS-LxE">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zOk-KS-LxE">
                                         <rect key="frame" x="6" y="354.66666666666674" width="416" height="31"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="7nI-J3-XFr"/>
+                                        </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RZ3-RL-2Pn">
                                         <rect key="frame" x="105" y="514" width="218" height="44"/>
@@ -311,6 +314,7 @@
                         <outlet property="playButton" destination="DAp-ZF-uog" id="hRa-34-wqQ"/>
                         <outlet property="playlist2CollectionView" destination="GkL-fr-zpQ" id="i2c-kC-RuX"/>
                         <outlet property="playlistCollectionView" destination="DIb-Np-tKg" id="3T8-k6-BRU"/>
+                        <outlet property="songDurationSlider" destination="zOk-KS-LxE" id="obK-ky-jTx"/>
                         <outlet property="songTitleLabel" destination="Uoi-mx-hPC" id="tja-fg-pGK"/>
                         <outlet property="songViewCountLabel" destination="VC2-wc-awx" id="4jQ-Uc-DXA"/>
                         <outlet property="youTubePlayerView" destination="Zpd-3C-e2W" id="HgF-Xu-SJY"/>

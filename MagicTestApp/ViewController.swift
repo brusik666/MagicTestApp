@@ -19,11 +19,11 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songViewCountLabel: UILabel!
     @IBOutlet weak var youtubePlayerContainerTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var songDurationSlider: UISlider!
     var isPlayerHidden = true
-    var isplayerPlaying = false
-    var isPlayerPlayingSubject: Observable<Bool> {
-        return Observable<Bool>.just(isplayerPlaying)
-    }
+    var isplayerPlaying = BehaviorRelay<Bool>(value: false)
+    
+
     
 
     
@@ -35,7 +35,8 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         "showinfo": 0,
         "modestbranding": 1,
         "disablekb": 1,
-        "playsinline": 1
+        "playsinline": 1,
+        "autohide": 1
     ]
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -45,10 +46,7 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         youTubePlayerView.delegate = self
         youTubePlayerView.isUserInteractionEnabled = false
         
-        collectionView.setCollectionViewLayout(UICollectionViewLayout.generateChannelLayout(view: collectionView), animated: true)
-        playlistCollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist1Layout(view: view), animated: true)
-        playlist2CollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist2Layout(view: view), animated: true)
-        
+        setAllCollectionViewsLayout()
         let gradiendLayer = CAGradientLayer()
         gradiendLayer.frame = view.bounds
         gradiendLayer.colors = [UIColor.systemPink.cgColor, UIColor.systemPurple.cgColor]
@@ -59,24 +57,41 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         configurePlaylistCellSelectionHandling()
         configurePlaylist2CellSelectionHandling()
         setupPlayerRX()
-       
+        
+
     }
     
-    func setupPlayerRX() {
-        isPlayerPlayingSubject.subscribe { [weak self] bool in
-            guard let self = self else { return }
-            self.playButton.isSelected.toggle()
-            self.view.layoutIfNeeded()
-        }
-        .disposed(by: disposeBag)
+    private func setAllCollectionViewsLayout() {
+        collectionView.setCollectionViewLayout(UICollectionViewLayout.generateChannelLayout(view: collectionView), animated: true)
+        playlistCollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist1Layout(view: view), animated: true)
+        playlist2CollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist2Layout(view: view), animated: true)
     }
     
-    func bindAllDataToCollectionViews() {
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+        
+    }
+    
+    
+    
+    private func setupPlayerRX() {
+        isplayerPlaying.asObservable().subscribe { isPlaying in
+            switch isPlaying.element {
+            case false:
+                self.playButton.isSelected = false
+            default:
+                self.playButton.isSelected = true
+            }
+        }.disposed(by: disposeBag)
+
+    }
+    
+    private func bindAllDataToCollectionViews() {
         bindChannelsToCollectionView()
         bindPlayList1CollectionView()
         bindPlaylist2CollectionView()
     }
-    func bindChannelsToCollectionView() {
+    
+    private func bindChannelsToCollectionView() {
         dataBase?.channelsSubject.bind(to: collectionView.rx.items(cellIdentifier: "ChannelCell", cellType: ChannelCollectionViewCell.self)) { (row, channel, cell) in
              cell.channelSubscribersCount.text = "\(channel.subscribersCount ?? "") подписчика"
              cell.channelTitleLabel.text = channel.title
@@ -93,22 +108,23 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         }.disposed(by: disposeBag)
     }
     
-    func configureChannelCellSelectionHandling() {
+    private func configureChannelCellSelectionHandling() {
         collectionView.rx.modelSelected(YoutubeChannel.self)
             .subscribe { channel in
+                self.songDurationSlider.value = 0
                 self.animatePlayerView()
                 guard let uploads = channel.element?.uploads else { return }
-                print(uploads)
                 self.youTubePlayerView.load(withPlaylistId: uploads, playerVars: self.playerVars)
                 self.playerViewDidBecomeReady(self.youTubePlayerView)
             }
             .disposed(by: disposeBag)
     }
     
-    func configurePlaylistCellSelectionHandling() {
+    private func configurePlaylistCellSelectionHandling() {
         playlistCollectionView.rx.modelSelected(Video.self)
             .subscribe { video in
-                self.isplayerPlaying = true
+                
+                self.songDurationSlider.value = 0
                 self.animatePlayerView()
 
                 guard let videoID = video.element?.id else { return }
@@ -116,13 +132,16 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
                 self.songTitleLabel.text = video.element?.title
                 self.songViewCountLabel.text = "\(video.element?.viewCount ?? "") просмотра"
                 self.playerViewDidBecomeReady(self.youTubePlayerView)
+                self.isplayerPlaying.accept(true)
             }
             .disposed(by: disposeBag)
     }
     
-    func configurePlaylist2CellSelectionHandling() {
+    private func configurePlaylist2CellSelectionHandling() {
         playlist2CollectionView.rx.modelSelected(Video.self)
             .subscribe { video in
+                
+                self.songDurationSlider.value = 0
                 self.animatePlayerView()
                 guard let videoID = video.element?.id else { return }
                 self.youTubePlayerView.load(withVideoId: videoID, playerVars: self.playerVars)
@@ -133,7 +152,7 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
             .disposed(by: disposeBag)
     }
     
-    func bindPlayList1CollectionView() {
+    private func bindPlayList1CollectionView() {
         dataBase?.playlists1Subject.bind(to: playlistCollectionView.rx.items(cellIdentifier: "VideoCell", cellType: VideoCollectionViewCell.self)) { (row, video, cell) in
             cell.viewCountLabel.text = video.viewCount + " просмотра"
             cell.videoTitleLabel.text = video.title
@@ -151,7 +170,8 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         .disposed(by: disposeBag)
     }
     
-    func bindPlaylist2CollectionView() {
+    
+    private func bindPlaylist2CollectionView() {
         dataBase?.playlist2Subject.bind(to: playlist2CollectionView.rx.items(cellIdentifier: "VideoCell", cellType: VideoCollectionViewCell.self)) { (row, video, cell) in
             cell.viewCountLabel.text = video.viewCount + " просмотра"
             cell.videoTitleLabel.text = video.title
@@ -167,7 +187,7 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         .disposed(by: disposeBag)
     }
     
-    func animatePlayerView() {
+    private func animatePlayerView() {
         if youtubePlayerContainerTopConstraint.constant == 16 {
             youtubePlayerContainerTopConstraint.constant = 755
         } else {
@@ -193,22 +213,48 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
         sender.isSelected.toggle()
+        if sender.isSelected {
+            youTubePlayerView.playVideo()
+        } else {
+            youTubePlayerView.pauseVideo()
+        }
+        
     }
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         youTubePlayerView.nextVideo()
     }
     @IBAction func previousButtonTapped(_ sender: UIButton) {
     }
-    func playVideo(withID id: String) {
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        youTubePlayerView.duration { time, error in
+            let seekToTime = Float(time) * sender.value
+            self.youTubePlayerView.seek(toSeconds: seekToTime, allowSeekAhead: true)
+
+        }
+    }
+    
+    
+    
+    private func playVideo(withID id: String) {
+        
         self.youTubePlayerView.load(withVideoId: id)
         playerViewDidBecomeReady(youTubePlayerView)
         
     }
     
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+    internal func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         youTubePlayerView.playVideo()
         
         
     }
+    internal func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
+        youTubePlayerView.duration { duration, error in
+            let progress = playTime / Float(duration)
+            self.songDurationSlider.value = progress
+        }
+    }
+    
+    
+    
 }
 
