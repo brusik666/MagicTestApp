@@ -4,6 +4,7 @@ struct Video {
     let title: String
     let coverURLstring: String
     let viewCount: String
+    var id: String?
     
     init? (with item: Item){
         
