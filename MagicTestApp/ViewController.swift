@@ -20,7 +20,18 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     @IBOutlet weak var songViewCountLabel: UILabel!
     @IBOutlet weak var youtubePlayerContainerTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var songDurationSlider: UISlider!
-    var isPlayerHidden = true
+    @IBOutlet weak var elapsedVideoTimeLabel: UILabel!
+    @IBOutlet weak var remainingVideoTimeLabel: UILabel!
+    var isPlayerHidden = true {
+        didSet {
+            guard let img1 = UIImage(named: "Close_Open_Reversed.png"),
+                  let img2 = UIImage(named: "Close_Open.png") else { return }
+            switch isPlayerHidden {
+            case true: hidePlayerButton.setImage(img1, for: .normal)
+            case false: hidePlayerButton.setImage(img2, for: .normal)
+            }
+        }
+    }
     var isplayerPlaying = BehaviorRelay<Bool>(value: false)
     
 
@@ -28,12 +39,13 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
 
     
     private let playerVars = [
-        "autoplay": 1,
+        "autoplay": 0,
         "controls": 0,
         "iv_load_policy": 3,
         "rel": 0,
         "showinfo": 0,
-        "modestbranding": 1,
+        "modestbranding": 0,
+        "fs": 0,
         "disablekb": 1,
         "playsinline": 1,
         "autohide": 1
@@ -57,7 +69,7 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         configurePlaylistCellSelectionHandling()
         configurePlaylist2CellSelectionHandling()
         setupPlayerRX()
-        
+
 
     }
     
@@ -111,21 +123,44 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     private func configureChannelCellSelectionHandling() {
         collectionView.rx.modelSelected(YoutubeChannel.self)
             .subscribe { channel in
+                
                 self.songDurationSlider.value = 0
                 self.animatePlayerView()
+                self.isPlayerHidden.toggle()
                 guard let uploads = channel.element?.uploads else { return }
                 self.youTubePlayerView.load(withPlaylistId: uploads, playerVars: self.playerVars)
                 self.playerViewDidBecomeReady(self.youTubePlayerView)
+                
             }
             .disposed(by: disposeBag)
     }
     
+    
+    
+    private func configurePlaylistCellSelectionHandling(for collectionView: UICollectionView) {
+        collectionView.rx.modelSelected(Video.self)
+            .subscribe { video in
+                
+                self.songDurationSlider.value = 0
+                self.animatePlayerView()
+                self.isPlayerHidden.toggle()
+                guard let videoID = video.element?.id else { return }
+                self.youTubePlayerView.load(withVideoId: videoID, playerVars: self.playerVars)
+                self.songTitleLabel.text = video.element?.title
+                self.songViewCountLabel.text = "\(video.element?.viewCount ?? "") просмотра"
+                self.playerViewDidBecomeReady(self.youTubePlayerView)
+                self.isplayerPlaying.accept(true)
+            }
+            .disposed(by: disposeBag)
+        
+    }
     private func configurePlaylistCellSelectionHandling() {
         playlistCollectionView.rx.modelSelected(Video.self)
             .subscribe { video in
                 
                 self.songDurationSlider.value = 0
                 self.animatePlayerView()
+                self.isPlayerHidden.toggle()
 
                 guard let videoID = video.element?.id else { return }
                 self.youTubePlayerView.load(withVideoId: videoID, playerVars: self.playerVars)
@@ -143,14 +178,18 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
                 
                 self.songDurationSlider.value = 0
                 self.animatePlayerView()
+                self.isPlayerHidden.toggle()
                 guard let videoID = video.element?.id else { return }
                 self.youTubePlayerView.load(withVideoId: videoID, playerVars: self.playerVars)
                 self.songTitleLabel.text = video.element?.title
                 self.songViewCountLabel.text = "\(video.element?.viewCount ?? "") просмотра"
                 self.playerViewDidBecomeReady(self.youTubePlayerView)
+                self.isplayerPlaying.accept(true)
             }
             .disposed(by: disposeBag)
     }
+    
+    
     
     private func bindPlayList1CollectionView() {
         dataBase?.playlists1Subject.bind(to: playlistCollectionView.rx.items(cellIdentifier: "VideoCell", cellType: VideoCollectionViewCell.self)) { (row, video, cell) in
@@ -234,14 +273,6 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     }
     
     
-    
-    private func playVideo(withID id: String) {
-        
-        self.youTubePlayerView.load(withVideoId: id)
-        playerViewDidBecomeReady(youTubePlayerView)
-        
-    }
-    
     internal func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         youTubePlayerView.playVideo()
         
@@ -249,9 +280,29 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     }
     internal func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
         youTubePlayerView.duration { duration, error in
+           // self.elapsedVideoTimeLabel.text = String(Int(playTime))
             let progress = playTime / Float(duration)
             self.songDurationSlider.value = progress
+            let remainingTimeInSeconds = Int(duration - Double(playTime))
+            let (minutes, seconds) = self.secondsToMinutesSeconds(remainingTimeInSeconds)
+            let (minutes2,seconds2) = self.secondsToMinutesSeconds(Int(playTime))
+            
+            if seconds2 < 10 {
+                self.elapsedVideoTimeLabel.text = "\(minutes2):0\(seconds2)"
+            } else {
+                self.elapsedVideoTimeLabel.text = "\(minutes2):\(seconds2)"
+            }
+            
+            if seconds < 10 {
+                self.remainingVideoTimeLabel.text = "\(minutes):0\(seconds)"
+            } else {
+                self.remainingVideoTimeLabel.text = "\(minutes):\(seconds)"
+            }
         }
+    }
+    
+    func secondsToMinutesSeconds(_ seconds: Int) -> (Int, Int) {
+        return (seconds / 60, (seconds % 60) % 60)
     }
     
     

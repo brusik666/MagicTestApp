@@ -209,7 +209,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZAF-Fv-SS7">
                                         <rect key="frame" x="8" y="420.66666666666674" width="412" height="46.333333333333314"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uoi-mx-hPC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uoi-mx-hPC">
                                                 <rect key="frame" x="0.0" y="0.0" width="412" height="20.666666666666668"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20.5" id="0JU-MS-YbD"/>
@@ -218,7 +218,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-wc-awx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Views" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-wc-awx">
                                                 <rect key="frame" x="0.0" y="28.666666666666515" width="412" height="17.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.67571838380000004" green="0.67571838380000004" blue="0.67571838380000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -264,6 +264,26 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="277" translatesAutoresizingMaskIntoConstraints="NO" id="hP3-Ol-zVd">
+                                        <rect key="frame" x="8" y="385.33333333333326" width="412" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YN-zu-GDz">
+                                                <rect key="frame" x="0.0" y="0.0" width="67.666666666666671" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o44-g8-RAs">
+                                                <rect key="frame" x="344.66666666666669" y="0.0" width="67.333333333333314" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="o44-g8-RAs" firstAttribute="width" secondItem="0YN-zu-GDz" secondAttribute="width" id="eDm-Xg-Xmx"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                 <constraints>
@@ -272,15 +292,18 @@
                                     <constraint firstItem="zOk-KS-LxE" firstAttribute="trailing" secondItem="ZAF-Fv-SS7" secondAttribute="trailing" id="H5R-Y6-a4x"/>
                                     <constraint firstItem="Zpd-3C-e2W" firstAttribute="height" secondItem="7tM-d7-o9V" secondAttribute="height" multiplier="0.4" id="JIq-HF-i3D"/>
                                     <constraint firstItem="zOk-KS-LxE" firstAttribute="leading" secondItem="7tM-d7-o9V" secondAttribute="leadingMargin" id="JxB-VG-0ST"/>
+                                    <constraint firstAttribute="trailing" secondItem="hP3-Ol-zVd" secondAttribute="trailing" constant="8" id="KMN-Nk-td6"/>
                                     <constraint firstItem="RZ3-RL-2Pn" firstAttribute="leading" secondItem="7tM-d7-o9V" secondAttribute="leading" constant="105" id="Vlh-5A-YEA"/>
                                     <constraint firstItem="cek-pL-1ax" firstAttribute="leading" secondItem="7tM-d7-o9V" secondAttribute="leading" id="Z8i-Fq-K4A"/>
                                     <constraint firstItem="zOk-KS-LxE" firstAttribute="leading" secondItem="ZAF-Fv-SS7" secondAttribute="leading" id="aG9-4p-70N"/>
                                     <constraint firstItem="cek-pL-1ax" firstAttribute="top" secondItem="7tM-d7-o9V" secondAttribute="topMargin" id="aVT-rW-ah1"/>
                                     <constraint firstAttribute="trailing" secondItem="Zpd-3C-e2W" secondAttribute="trailing" id="apn-Gt-SSM"/>
                                     <constraint firstItem="ZAF-Fv-SS7" firstAttribute="centerX" secondItem="RZ3-RL-2Pn" secondAttribute="centerX" id="dgW-k9-1QO"/>
+                                    <constraint firstItem="hP3-Ol-zVd" firstAttribute="leading" secondItem="7tM-d7-o9V" secondAttribute="leading" constant="8" id="f0P-oY-t1r"/>
                                     <constraint firstItem="ZAF-Fv-SS7" firstAttribute="top" secondItem="zOk-KS-LxE" secondAttribute="bottom" constant="36" id="gyE-dT-C1f"/>
                                     <constraint firstItem="zOk-KS-LxE" firstAttribute="trailing" secondItem="7tM-d7-o9V" secondAttribute="trailingMargin" id="nBg-KV-kME"/>
                                     <constraint firstAttribute="trailing" secondItem="cek-pL-1ax" secondAttribute="trailing" id="tFJ-vd-rHb"/>
+                                    <constraint firstItem="hP3-Ol-zVd" firstAttribute="top" secondItem="Zpd-3C-e2W" secondAttribute="bottom" constant="50" id="unc-yz-8Wz"/>
                                     <constraint firstItem="zOk-KS-LxE" firstAttribute="top" secondItem="Zpd-3C-e2W" secondAttribute="bottom" constant="19.5" id="vot-n9-3eQ"/>
                                     <constraint firstItem="RZ3-RL-2Pn" firstAttribute="top" secondItem="ZAF-Fv-SS7" secondAttribute="bottom" constant="47" id="zem-rd-GFw"/>
                                 </constraints>
@@ -310,10 +333,12 @@
                     <navigationItem key="navigationItem" title="YouTubeAPI" largeTitleDisplayMode="always" id="EwM-vD-3gT"/>
                     <connections>
                         <outlet property="collectionView" destination="h6X-MT-bvU" id="X1Z-pQ-TAH"/>
+                        <outlet property="elapsedVideoTimeLabel" destination="0YN-zu-GDz" id="VnT-Ud-veV"/>
                         <outlet property="hidePlayerButton" destination="cek-pL-1ax" id="TCv-1f-lmC"/>
                         <outlet property="playButton" destination="DAp-ZF-uog" id="hRa-34-wqQ"/>
                         <outlet property="playlist2CollectionView" destination="GkL-fr-zpQ" id="i2c-kC-RuX"/>
                         <outlet property="playlistCollectionView" destination="DIb-Np-tKg" id="3T8-k6-BRU"/>
+                        <outlet property="remainingVideoTimeLabel" destination="o44-g8-RAs" id="E1P-PJ-yaI"/>
                         <outlet property="songDurationSlider" destination="zOk-KS-LxE" id="obK-ky-jTx"/>
                         <outlet property="songTitleLabel" destination="Uoi-mx-hPC" id="tja-fg-pGK"/>
                         <outlet property="songViewCountLabel" destination="VC2-wc-awx" id="4jQ-Uc-DXA"/>
