@@ -22,6 +22,7 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     @IBOutlet weak var songDurationSlider: UISlider!
     @IBOutlet weak var elapsedVideoTimeLabel: UILabel!
     @IBOutlet weak var remainingVideoTimeLabel: UILabel!
+    
     var isPlayerHidden = true {
         didSet {
             guard let img1 = UIImage(named: "Close_Open_Reversed.png"),
@@ -34,18 +35,11 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     }
     var isplayerPlaying = BehaviorRelay<Bool>(value: false)
     
-
-    
-
-    
     private let playerVars = [
-        "autoplay": 0,
+        "autoplay": 1,
         "controls": 0,
-        "iv_load_policy": 3,
-        "rel": 0,
         "showinfo": 0,
         "modestbranding": 0,
-        "fs": 0,
         "disablekb": 1,
         "playsinline": 1,
         "autohide": 1
@@ -69,14 +63,15 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         configurePlaylistCellSelectionHandling()
         configurePlaylist2CellSelectionHandling()
         setupPlayerRX()
-
+        
+        
 
     }
     
     private func setAllCollectionViewsLayout() {
         collectionView.setCollectionViewLayout(UICollectionViewLayout.generateChannelLayout(view: collectionView), animated: true)
-        playlistCollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist1Layout(view: view), animated: true)
-        playlist2CollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist2Layout(view: view), animated: true)
+        playlistCollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist1Layout(view: view, collectionView: playlistCollectionView), animated: true)
+        playlist2CollectionView.setCollectionViewLayout(UICollectionViewLayout.generatePlaylist2Layout(view: view, collectionView: playlist2CollectionView), animated: true)
     }
     
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
@@ -140,7 +135,6 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     private func configurePlaylistCellSelectionHandling(for collectionView: UICollectionView) {
         collectionView.rx.modelSelected(Video.self)
             .subscribe { video in
-                
                 self.songDurationSlider.value = 0
                 self.animatePlayerView()
                 self.isPlayerHidden.toggle()
@@ -155,14 +149,18 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         
     }
     private func configurePlaylistCellSelectionHandling() {
+        let index: Int = 0
+        playlistCollectionView.rx.itemSelected.asObservable().subscribe { indexPath in
+            guard index == indexPath.element?.row else { return }
+        }
         playlistCollectionView.rx.modelSelected(Video.self)
             .subscribe { video in
                 
                 self.songDurationSlider.value = 0
                 self.animatePlayerView()
                 self.isPlayerHidden.toggle()
-
                 guard let videoID = video.element?.id else { return }
+                
                 self.youTubePlayerView.load(withVideoId: videoID, playerVars: self.playerVars)
                 self.songTitleLabel.text = video.element?.title
                 self.songViewCountLabel.text = "\(video.element?.viewCount ?? "") просмотра"
@@ -227,10 +225,11 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     }
     
     private func animatePlayerView() {
-        if youtubePlayerContainerTopConstraint.constant == 16 {
-            youtubePlayerContainerTopConstraint.constant = 755
+        
+        if youtubePlayerContainerTopConstraint.constant == -30 {
+            youtubePlayerContainerTopConstraint.constant =  -(view.frame.height / 1.3)
         } else {
-            youtubePlayerContainerTopConstraint.constant = 16
+            youtubePlayerContainerTopConstraint.constant = -30
         }
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
@@ -275,7 +274,6 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
     
     internal func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         youTubePlayerView.playVideo()
-        
         
     }
     internal func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
