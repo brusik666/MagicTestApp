@@ -145,6 +145,8 @@
 			dependencies = (
 			);
 			name = MagicTestApp;
+			packageProductDependencies = (
+			);
 			productName = MagicTestApp;
 			productReference = EEEED6ED2842DCB2005BD347 /* MagicTestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -173,6 +175,8 @@
 				Base,
 			);
 			mainGroup = EEEED6E42842DCB2005BD347;
+			packageReferences = (
+			);
 			productRefGroup = EEEED6EE2842DCB2005BD347 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

@@ -57,6 +57,8 @@ class ViewController: UIViewController, DataBaseAbailable, APIRequestControllerA
         gradiendLayer.frame = view.bounds
         gradiendLayer.colors = [UIColor.systemPink.cgColor, UIColor.systemPurple.cgColor]
         youtubePlayerViewContainer.layer.insertSublayer(gradiendLayer, at: 0)
+        youtubePlayerViewContainer.layer.cornerRadius = 15
+        youtubePlayerViewContainer.layer.masksToBounds = true
         
         bindAllDataToCollectionViews()
         configureChannelCellSelectionHandling()

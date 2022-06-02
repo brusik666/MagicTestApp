@@ -35,7 +35,6 @@ extension DataBase {
             .disposed(by: disposeBag)
     }
     
-    
     private func loadPlaylistsData() {
         guard let urls = apiRequestController?.createURLsForPlaylistItems(with: youtubePlaylistsIDs) else { return }
         urls.forEach { url in

@@ -14,4 +14,8 @@ class ChannelCollectionViewCell: UICollectionViewCell {
         channelCoverImageView.layer.masksToBounds = true
         
     }
+    
+    override func prepareForReuse() {
+        channelCoverImageView.image = nil
+    }
 }

@@ -29,6 +29,10 @@ class VideoCollectionViewCell: UICollectionViewCell, APIRequestControllerAvailab
         
     }
     
+    override func prepareForReuse() {
+        videoBannerImageView.image = nil
+    }
+    
     override func layoutSubviews() {
         videoBannerImageView.layer.cornerRadius = 15
         videoBannerImageView.layer.masksToBounds = true
